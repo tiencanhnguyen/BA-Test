@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<templates xml:space="preserve">
+    <t t-extend="ListView.buttons">
+        <t t-jquery="button.o_list_button_add" t-operation="after">
+            <button t-t-if="widget.modelName == 'sale.order'" class="btn btn-primary o_scan_qr_button" type="button" accesskey="f">Scan</button>
+        </t>
+    </t>
+
+    <t t-extend="KanbanView.buttons">
+        <t t-jquery="button" t-operation="after">
+            <button t-t-if="widget.modelName == 'sale.order'" class="btn btn-primary o_scan_qr_button" type="button" accesskey="f">Scan</button>
+        </t>
+    </t>
+
+    <t t-name="ScanQrDialog">
+        <div id="reader" width="80%" height="500px"></div>
+    </t>
+</templates>

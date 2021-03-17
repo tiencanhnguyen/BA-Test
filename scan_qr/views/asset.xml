@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="button_render_backend_js" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script src="scan_qr/static/src/js/scan_qr.js" type="text/javascript"/>
+                <script src="scan_qr/static/src/js/qr_code_dialog.js" type="text/javascript"/>
+            </xpath>
+        </template>
+    </data>
+</odoo>
