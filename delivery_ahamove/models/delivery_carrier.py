@@ -3,6 +3,7 @@
 from odoo import models, fields, api, _
 from odoo.tools.safe_eval import safe_eval
 from odoo.exceptions import UserError
+import datetime
 
 
 class DeliveryCarrier(models.Model):
@@ -40,10 +41,12 @@ class DeliveryCarrier(models.Model):
             return 0
         for line in self.price_rule_ids:
             test = safe_eval(line.variable + line.operator + str(line.max_value), price_dict)
-            if test:
+            if test and line.from_date <= datetime.datetime.now() <= line.to_date and not [exclude_date.exclude_date for exclude_date in line.exclude_date_id if exclude_date.exclude_date == datetime.date.today()]:
                 price = line.list_base_price + line.list_price * price_dict[line.variable_factor]
                 criteria_found = True
                 break
+            elif test:
+                raise UserError(_("This delivery can not be applied."))
         if not criteria_found:
             raise UserError(_("No price rule matching this order; delivery cost cannot be computed."))
 

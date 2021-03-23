@@ -17,17 +17,21 @@
             </xpath>
             <xpath expr="//field[@name='variable_factor']/.." position="after">
                 <label string="From date" for="from_date" attrs="{'invisible': [('delivery_type', '!=', 'ahamove_vietnam')]}"/>
-                    <div class="o_row" attrs="{'invisible': [('delivery_type', '!=', 'ahamove_vietnam')]}">
-                        <field name="from_date" nolabel="1" class="col-3"/>
-                        <label string="To date" for="to_date" class="d-flex justify-content-center"/>
-                        <div>
-                            <field name="to_date" nolabel="1" class="col-4"/>
-                        </div>
-                    </div>
-                    <label string="Exclude date" for="exclude_date" attrs="{'invisible': [('delivery_type', '!=', 'ahamove_vietnam')]}"/>
-                    <div attrs="{'invisible': [('delivery_type', '!=', 'ahamove_vietnam')]}">
-                        <field name="exclude_date" nolabel="1" class="col-4"/>
-                    </div>
+                <div attrs="{'invisible': [('delivery_type', '!=', 'ahamove_vietnam')]}">
+                    <field name="from_date" nolabel="1" class="col-4"/>
+                </div>
+                <label string="To date" for="to_date" attrs="{'invisible': [('delivery_type', '!=', 'ahamove_vietnam')]}"/>
+                <div attrs="{'invisible': [('delivery_type', '!=', 'ahamove_vietnam')]}">
+                    <field name="to_date" nolabel="1" class="col-4"/>
+                </div>
+                <label string="Exclude date" for="exclude_date" attrs="{'invisible': [('delivery_type', '!=', 'ahamove_vietnam')]}"/>
+                <div attrs="{'invisible': [('delivery_type', '!=', 'ahamove_vietnam')]}">
+                    <field name="exclude_date_id" mode="tree" class="col-8">
+                        <tree editable="bottom" create="true" delete="true">
+                            <field name="exclude_date" readonly="0"/>
+                        </tree>
+                    </field>
+                </div>
             </xpath>
         </field>
     </record>
